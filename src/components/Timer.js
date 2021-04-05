@@ -15,9 +15,8 @@ const Timer = () => {
     const seconds = `0${Math.round(time % 60)}`.slice(-2);
     const minutes = `${Math.floor(time / 60)}`;
     const getMinutes = `0${minutes % 60}`.slice(-2);
-    const hours = `0${Math.floor(time / 3600)}`.slice(-2);
 
-    return `${hours}:${getMinutes}:${seconds}`;
+    return `${getMinutes}:${seconds}`;
   };
 
   return <div>{format(timer)}</div>;
