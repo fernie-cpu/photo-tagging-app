@@ -1,12 +1,11 @@
 import React from 'react';
-import Timer from './Timer';
 
-const Navbar = () => {
+const Navbar = ({ timer }) => {
   return (
     <nav>
       <div className='logo'>Find DB</div>
       <div>
-        <Timer />
+        <h3>{timer}</h3>
       </div>
     </nav>
   );

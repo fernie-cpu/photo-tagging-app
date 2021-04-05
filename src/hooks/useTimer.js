@@ -13,10 +13,9 @@ const useTimer = () => {
 
   const stop = () => {
     clearInterval(countRef.current);
-    setTimer(0);
   };
 
-  const restart = () => {
+  const reset = () => {
     clearInterval(countRef.current);
     setTimer(0);
   };
@@ -29,7 +28,7 @@ const useTimer = () => {
     return `${getMinutes}:${seconds}`;
   };
 
-  return [timer, format, start, stop, restart];
+  return [timer, format, start, stop, reset];
 };
 
 export { useTimer };
