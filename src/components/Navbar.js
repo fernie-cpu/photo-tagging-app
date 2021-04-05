@@ -4,12 +4,10 @@ import Timer from './Timer';
 const Navbar = () => {
   return (
     <nav>
-      <ul>
-        <li>Find DB</li>
-        <li>
-          <Timer />
-        </li>
-      </ul>
+      <div className='logo'>Find DB</div>
+      <div>
+        <Timer />
+      </div>
     </nav>
   );
 };
