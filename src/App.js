@@ -1,4 +1,6 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Game from './components/Game';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
@@ -12,17 +14,18 @@ const firebaseConfig = {
   measurementId: 'G-0DEN6XD1S7',
 };
 
-console.log(firebaseConfig.apiKey);
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+// const db = firebase.firestore();
 
 const App = () => {
   return (
     <div className='App'>
-      <header className='App-header'>
-        <h1>Here we go...</h1>
-      </header>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' render={() => <Game />} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 };
