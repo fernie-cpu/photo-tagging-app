@@ -16,14 +16,14 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-// const db = firebase.firestore();
+const db = firebase.firestore();
 
 const App = () => {
   return (
     <div className='App'>
       <BrowserRouter>
         <Switch>
-          <Route exact path='/' render={() => <Game />} />
+          <Route exact path='/' render={() => <Game db={db} />} />
         </Switch>
       </BrowserRouter>
     </div>

@@ -1,15 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import dbImg from '../img/dragon-ball.jpg';
 import Navbar from './Navbar';
 import { useTimer } from '../hooks/useTimer';
 import Start from './Start';
 
-const Game = () => {
+const Game = (props) => {
   const [menu, setMenu] = useState('hidden');
   const [openStart, setOpenStart] = useState(true);
   const [pageX, setPageX] = useState(0);
   const [pageY, setPageY] = useState(0);
   const [timer, formatTimer, startTimer, stopTimer, resetTimer] = useTimer();
+  const [dendePosition, setDendePosition] = useState({});
+
+  useEffect(() => {
+    props.db
+      .collection('characters')
+      .doc('dende')
+      .get()
+      .then((doc) => {
+        setDendePosition({
+          xStart: doc.data().xStart,
+          yStart: doc.data().yStart,
+          xEnd: doc.data().xEnd,
+          yEnd: doc.data().yEnd,
+        });
+        console.log(doc.data());
+      })
+      .catch((err) => {
+        console.log("Oops, it seems we didn't get that!", err);
+      });
+  }, []);
 
   const startGame = async () => {
     setOpenStart(false);
@@ -31,15 +51,12 @@ const Game = () => {
   };
 
   const handleClick = (e) => {
+    e.preventDefault();
     toggleMenu();
     if (menu === 'hidden') {
       setPageX(e.pageX);
       setPageY(e.pageY);
     }
-    let x = e.clientX;
-    let y = e.clientY;
-    let coord = `X: ${x}, Y: ${y}`;
-    console.log(coord);
   };
 
   return (
